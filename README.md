@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-	$./index.rb
+	$ ruby ./index.rb
 
 ## Contributing
 
