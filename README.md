@@ -1,6 +1,6 @@
 # Codebreaker
 
-TODO: Write a gem description
+The best codebreaker on Github!
 
 ## Installation
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+	$./index.rb
 
 ## Contributing
 
