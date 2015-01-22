@@ -1,4 +1,4 @@
-require "codebreaker/version"
+require_relative "codebreaker/version"
 
 module Codebreaker
   class Game
@@ -10,8 +10,6 @@ module Codebreaker
 
       @secret_key = ""
       generate_secret_key
-
-      start
     end
 
     def generate_secret_key
@@ -30,16 +28,16 @@ module Codebreaker
 
         str = @advice ?  " or type 'hint' to request a hint" : ""
         puts "Enter code#{str}:"
-        input = gets.chomp
+        input = STDIN.gets.chomp
 
         next unless valid?(input)
 
         if input == 'hint'
-          give_hint if @advice
+          puts hint if @advice
           next
         end
 
-        print_answer(input)
+        puts answer(input)
 
         if input == @secret_key
           congratulate
@@ -68,20 +66,20 @@ module Codebreaker
     end
 
     def valid?(input)
-      /^[1-6]{4}$/.match(input) || input == 'hint'
+      input =~ /^[1-6]{4}$/ || input == 'hint'
     end
 
-    def give_hint
+    def hint
       @advice = false
 
       hint_position = rand(0..3)
       hint = Array.new(4, '*')
       hint[hint_position] = @secret_key[hint_position]
 
-      puts hint.join
+      hint.join
     end
 
-    def print_answer(code)
+    def answer(code)
       answer = Array.new(4, 'X')
 
       code.split("").each_with_index do |value, index|
@@ -90,7 +88,7 @@ module Codebreaker
         end
       end
 
-      puts answer.join
+      answer.join
     end
 
     def congratulate
